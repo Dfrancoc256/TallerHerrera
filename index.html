@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Taller Herrera - Fin de Año</title>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -12,7 +18,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #02010a;
       color: #fefce8;
     }
@@ -24,19 +30,23 @@
       overflow: hidden;
     }
 
-    /* VIDEO DE FONDO */
+    /* ===== VIDEO FONDO ===== */
     .video-bg {
       position: absolute;
       inset: 0;
       z-index: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
     }
 
     .video-bg video {
-      width: 100%;
-      height: 100%;
+      width: 85%;
+      height: 85%;
       object-fit: cover;
       filter: saturate(1.1) contrast(1.05);
+      border-radius: 20px;
     }
 
     .video-tint {
@@ -52,11 +62,11 @@
     .video-darken {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(0,0,0,0.35), rgba(0,0,0,0.85));
+      background: radial-gradient(circle at center, rgba(0,0,0,0.45), rgba(0,0,0,0.92));
       pointer-events: none;
     }
 
-    /* CAPA DE CIELO Y ESTRELLAS ENCIMA DEL VIDEO */
+    /* Cielo y estrellas */
     .sky-layer {
       position: absolute;
       inset: 0;
@@ -107,15 +117,15 @@
       background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
     }
 
-    /* CONTENIDO PRINCIPAL SIN CUADRO */
+    /* ===== CONTENIDO ===== */
     .center-content {
       position: absolute;
       z-index: 3;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: min(1000px, 94vw);
-      padding: 1.5rem 1.2rem;
+      width: min(1100px, 94vw);
+      padding: 1.6rem 1.4rem;
       text-align: center;
       text-shadow: 0 0 12px rgba(0,0,0,0.9);
     }
@@ -124,13 +134,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 0.9rem;
-      margin-bottom: 0.4rem;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
     }
 
     .icon-badge {
-      width: 46px;
-      height: 46px;
+      width: 52px;
+      height: 52px;
       border-radius: 999px;
       display: flex;
       align-items: center;
@@ -138,7 +148,7 @@
       background: radial-gradient(circle at 30% 30%, #1b1119, #020617 80%);
       border: 1px solid rgba(252,211,77,0.9);
       box-shadow: 0 0 18px rgba(251,191,36,0.9);
-      font-size: 24px;
+      font-size: 26px;
       animation: float 4s ease-in-out infinite;
     }
 
@@ -149,75 +159,137 @@
       50%     { transform: translateY(-6px); }
     }
 
+    /* 2026 AZUL CON FONDO DORADO */
     .year-label {
-      font-size: clamp(2.4rem, 6vw, 3.2rem);
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: clamp(3rem, 7vw, 3.8rem);
       font-weight: 900;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: #facc15;
+      color: #60a5fa; /* azul */
+      display: inline-block;
+      padding: 0.4rem 2.2rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #facc15, #b45309);
+      box-shadow:
+        0 0 18px rgba(250,204,21,0.9),
+        0 0 36px rgba(251,191,36,0.7);
       text-shadow:
-        0 0 12px rgba(250,204,21,0.95),
-        0 0 26px rgba(248,250,252,0.9);
-      margin-bottom: 0.3rem;
+        0 0 10px rgba(15,23,42,0.9),
+        0 0 18px rgba(15,23,42,0.9);
+      margin-bottom: 0.7rem;
+    }
+
+    .year-label.celebrate {
+      animation: yearPulse 1.2s ease-in-out infinite;
+    }
+
+    @keyframes yearPulse {
+      0%   { transform: scale(1); box-shadow: 0 0 18px rgba(250,204,21,0.8);}
+      50%  { transform: scale(1.05); box-shadow: 0 0 36px rgba(250,204,21,1);}
+      100% { transform: scale(1); box-shadow: 0 0 18px rgba(250,204,21,0.8);}
     }
 
     .brand {
-      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: clamp(1rem, 2.6vw, 1.25rem);
       font-weight: 800;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
       color: #fed7aa;
-      margin-bottom: 0.6rem;
+      margin-bottom: 1rem;
     }
 
     .headline {
-      font-size: clamp(0.95rem, 2.4vw, 1.1rem);
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: clamp(1.1rem, 2.8vw, 1.4rem);
       font-weight: 800;
       color: #fef9c3;
-      margin: 0 auto 0.8rem;
-      max-width: 52rem;
-      min-height: 1.7em;
+      margin: 0 auto 1.1rem;
+      max-width: 65rem;
+      min-height: 2.2em;
       border-right: 2px solid #facc15;
-      white-space: nowrap;
+      white-space: normal;
       overflow: hidden;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
     .body-text {
-      font-size: clamp(0.9rem, 2.1vw, 1rem);
-      font-weight: 400;
-      color: #e5e7eb;
-      line-height: 1.9;
-      max-width: 50rem;
-      margin: 0.6rem auto 0;
+      font-size: clamp(1rem, 2.3vw, 1.15rem);
+      font-weight: 500;
+      color: #f9fafb;
+      line-height: 2.0;
+      max-width: 58rem;
+      margin: 0.9rem auto 0;
       letter-spacing: 0.01em;
     }
 
     .footer-text {
-      margin-top: 1.6rem;
-      font-size: clamp(0.8rem, 2.1vw, 0.9rem);
+      margin-top: 1.7rem;
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: clamp(0.9rem, 2.2vw, 1rem);
       font-weight: 800;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: #fbbf24;
     }
 
-    .palette {
-      margin-top: 0.3rem;
-      font-size: clamp(0.7rem, 1.8vw, 0.78rem);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #fed7aa;
+    /* ===== RELOJ REGRESIVO ===== */
+    .countdown-wrapper {
+      margin-top: 1.8rem;
     }
 
-    /* Fuegos artificiales más realistas */
+    .countdown-label {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      margin-bottom: 0.6rem;
+    }
+
+    .countdown {
+      display: inline-flex;
+      gap: 0.7rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at top, rgba(250,204,21,0.18), rgba(15,23,42,0.95));
+      border: 1px solid rgba(251,191,36,0.65);
+      box-shadow:
+        0 0 18px rgba(250,204,21,0.45),
+        0 18px 40px rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+    }
+
+    .count-item {
+      min-width: 68px;
+    }
+
+    .count-value {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: clamp(1rem, 2.4vw, 1.2rem);
+      font-weight: 800;
+      color: #fefce8;
+    }
+
+    .count-label {
+      font-size: clamp(0.55rem, 1.6vw, 0.7rem);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #fee2b9;
+    }
+
+    /* ===== FUEGOS ARTIFICIALES (más explosivos y coloridos) ===== */
     .rocket {
       position: fixed;
       width: 3px;
-      height: 45px;
+      height: 55px;
       background: linear-gradient(to top, rgba(248,181,61,0), #fbbf24);
       border-radius: 999px;
       pointer-events: none;
-      animation: rocketUp 0.75s ease-out forwards;
+      animation: rocketUp 0.8s ease-out forwards;
       mix-blend-mode: screen;
       z-index: 4;
     }
@@ -225,26 +297,26 @@
     @keyframes rocketUp {
       0%   { transform: translateY(0); opacity: 0; }
       15%  { opacity: 1; }
-      100% { transform: translateY(-260px); opacity: 0; }
+      100% { transform: translateY(-300px); opacity: 0; }
     }
 
     .firework-center {
       position: fixed;
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       border-radius: 999px;
       background: radial-gradient(circle,#fefdf5,#fbbf24,transparent 70%);
-      box-shadow: 0 0 32px #fde68a;
+      box-shadow: 0 0 40px #fde68a;
       pointer-events: none;
       animation: center-fade 1.1s ease-out forwards;
       mix-blend-mode: screen;
-      z-index: 4;
+      z-index: 3; /* detrás del texto */
     }
 
     @keyframes center-fade {
       0%   { opacity: 0; transform: scale(0.3); }
       20%  { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(1.25); }
+      100% { opacity: 0; transform: scale(1.4); }
     }
 
     .spark {
@@ -255,9 +327,9 @@
       background: #fef9c3;
       box-shadow: 0 0 16px currentColor;
       pointer-events: none;
-      animation: spark-move 1.15s ease-out forwards;
+      animation: spark-move 1.25s ease-out forwards;
       mix-blend-mode: screen;
-      z-index: 4;
+      z-index: 3; /* también detrás del texto */
     }
 
     @keyframes spark-move {
@@ -265,7 +337,6 @@
       100% { opacity: 0; transform: translate(var(--dx),var(--dy)) scale(0.3); }
     }
 
-    /* Brasas que caen */
     .ember {
       position: fixed;
       width: 3px;
@@ -277,7 +348,7 @@
       pointer-events: none;
       animation: ember-fall linear infinite;
       mix-blend-mode: screen;
-      z-index: 3;
+      z-index: 2;
     }
 
     @keyframes ember-fall {
@@ -286,16 +357,47 @@
       100% { transform: translateY(120vh) translateX(15px) scale(0.4); opacity: 0; }
     }
 
-    /* Ajustes para pantallas pequeñas */
+    /* ===== MÓVIL ===== */
     @media (max-width: 768px) {
-      .center-content {
-        top: 46%;
-        transform: translate(-50%, -50%);
-        padding-inline: 1rem;
+      .video-bg video {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
       }
+
+      .center-content {
+        top: 44%;
+        transform: translate(-50%, -50%);
+        padding-inline: 1.2rem;
+      }
+
+      .icon-badge {
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
+      }
+
+      .year-label {
+        font-size: clamp(2.8rem, 11vw, 3.5rem);
+      }
+
       .headline {
-        white-space: normal;
         border-right: none;
+        font-size: 1.05rem;
+      }
+
+      .body-text {
+        font-size: 1rem;
+        line-height: 1.9;
+      }
+
+      .countdown {
+        gap: 0.5rem;
+        padding: 0.5rem 0.9rem;
+      }
+
+      .count-item {
+        min-width: 56px;
       }
     }
   </style>
@@ -304,7 +406,6 @@
   <div class="scene">
     <!-- Video de fondo -->
     <div class="video-bg">
-      <!-- Cambia "motor.mp4" por el nombre de tu video -->
       <video src="motor.mp4" autoplay loop muted playsinline></video>
       <div class="video-tint"></div>
       <div class="video-darken"></div>
@@ -324,7 +425,7 @@
         <div class="icon-badge">🛠️</div>
       </div>
 
-      <div class="year-label">2026</div>
+      <div class="year-label" id="year-label">2026</div>
       <div class="brand">TALLER HERRERA</div>
 
       <div class="headline" id="headline"
@@ -340,7 +441,29 @@
       </p>
 
       <div class="footer-text">FELIZ FIN DE AÑO Y ARRANQUE 2026</div>
-      <div class="palette"></div>
+
+      <!-- RELOJ REGRESIVO -->
+      <div class="countdown-wrapper">
+        <div class="countdown-label">CUENTA REGRESIVA PARA EL 2026</div>
+        <div class="countdown" id="countdown">
+          <div class="count-item">
+            <div class="count-value" id="cd-days">00</div>
+            <div class="count-label">DÍAS</div>
+          </div>
+          <div class="count-item">
+            <div class="count-value" id="cd-hours">00</div>
+            <div class="count-label">HORAS</div>
+          </div>
+          <div class="count-item">
+            <div class="count-value" id="cd-mins">00</div>
+            <div class="count-label">MIN</div>
+          </div>
+          <div class="count-item">
+            <div class="count-value" id="cd-secs">00</div>
+            <div class="count-label">SEG</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -371,7 +494,43 @@
         }
       })();
 
-      /* Fuegos artificiales cálidos y más llenos */
+      /* Fuegos artificiales: más colores, más chispas y explosiones de fondo */
+      function createExplosion(cx, cy, scale = 1) {
+        const colors = [
+          "#fbbf24", "#fb923c", "#fecaca", "#fef3c7",
+          "#ef4444", "#22c55e", "#60a5fa", "#a855f7",
+          "#f472b6", "#2dd4bf", "#93c5fd"
+        ];
+
+        const rings = 3;
+        const baseSparks = 40;
+
+        for (let r = 1; r <= rings; r++) {
+          const radiusBoost = r * 25 * scale;
+          const sparks = (baseSparks + r * 12) * scale;
+
+          for (let i = 0; i < sparks; i++) {
+            const angle = (Math.PI * 2 * i) / sparks + Math.random() * 0.25;
+            const dist = (70 + Math.random() * 40 + radiusBoost);
+            const dx = Math.cos(angle) * dist;
+            const dy = Math.sin(angle) * dist;
+
+            const sp = document.createElement("div");
+            sp.className = "spark";
+            sp.style.left = cx + "vw";
+            sp.style.top = cy + "vh";
+            sp.style.color = colors[Math.floor(Math.random() * colors.length)];
+            const size = 3 + Math.random() * 4 * scale;
+            sp.style.setProperty("--size", size + "px");
+            sp.style.setProperty("--dx", dx + "px");
+            sp.style.setProperty("--dy", dy + "px");
+            document.body.appendChild(sp);
+
+            setTimeout(() => sp.remove(), 1500);
+          }
+        }
+      }
+
       function launchFirework() {
         const x = 18 + Math.random() * 64;
         const baseY = 88 + Math.random() * 6;
@@ -381,8 +540,6 @@
         rocket.style.left = x + "vw";
         rocket.style.bottom = baseY + "px";
         document.body.appendChild(rocket);
-
-        const colors = ["#fbbf24", "#fb923c", "#fecaca", "#fef3c7"];
 
         setTimeout(() => {
           rocket.remove();
@@ -395,32 +552,31 @@
           center.style.top = cy + "vh";
           document.body.appendChild(center);
 
-          const sparks = 32;
-          for (let i = 0; i < sparks; i++) {
-            const angle = (Math.PI * 2 * i) / sparks + Math.random() * 0.25;
-            const dist = 70 + Math.random() * 40;
-            const dx = Math.cos(angle) * dist;
-            const dy = Math.sin(angle) * dist;
+          createExplosion(cx, cy, 1);
 
-            const sp = document.createElement("div");
-            sp.className = "spark";
-            sp.style.left = cx + "vw";
-            sp.style.top = cy + "vh";
-            sp.style.color = colors[Math.floor(Math.random() * colors.length)];
-            const size = 3 + Math.random() * 3;
-            sp.style.setProperty("--size", size + "px");
-            sp.style.setProperty("--dx", dx + "px");
-            sp.style.setProperty("--dy", dy + "px");
-            document.body.appendChild(sp);
-
-            setTimeout(() => sp.remove(), 1200);
-          }
-
-          setTimeout(() => center.remove(), 1200);
-        }, 700);
+          setTimeout(() => center.remove(), 1500);
+        }, 800);
       }
 
-      setInterval(launchFirework, 1200);
+      /* Explosiones de fondo (sin cohete) repartidas por el cielo */
+      function backgroundBurst() {
+        const cx = 10 + Math.random() * 80;  // ancho
+        const cy = 5 + Math.random() * 30;   // parte alta del cielo
+        const center = document.createElement("div");
+        center.className = "firework-center";
+        center.style.left = cx + "vw";
+        center.style.top = cy + "vh";
+        document.body.appendChild(center);
+
+        createExplosion(cx, cy, 0.9);
+
+        setTimeout(() => center.remove(), 1500);
+      }
+
+      /* un poco más frecuentes */
+      setInterval(launchFirework, 1000);
+      setInterval(backgroundBurst, 1600);
+
       for (let i = 0; i < 3; i++) setTimeout(launchFirework, 300 * i);
 
       /* Brasas que caen */
@@ -435,6 +591,57 @@
       }
       for (let k = 0; k < 20; k++) crearEmber();
       setInterval(crearEmber, 1500);
+
+      /* ===== RELOJ REGRESIVO A 1 ENERO 2026 ===== */
+      const cdDays  = document.getElementById("cd-days");
+      const cdHours = document.getElementById("cd-hours");
+      const cdMins  = document.getElementById("cd-mins");
+      const cdSecs  = document.getElementById("cd-secs");
+      const countdownBox = document.getElementById("countdown");
+      const yearLabel = document.getElementById("year-label");
+
+      const targetDate = new Date("2026-01-01T00:00:00");
+      let alreadyCelebrated = false;
+
+      function bigCelebration() {
+        yearLabel.classList.add("celebrate");
+        countdownBox.innerHTML =
+          "<span style='font-family:Poppins,system-ui,sans-serif;font-weight:800;font-size:1rem;color:#facc15;letter-spacing:0.18em;text-transform:uppercase;'>¡FELIZ 2026! 🎉</span>";
+        headline.textContent = "¡FELIZ AÑO NUEVO 2026!";
+        headline.style.borderRight = "2px solid transparent";
+
+        for (let i = 0; i < 18; i++) {
+          setTimeout(() => launchFirework(), i * 200);
+          setTimeout(() => backgroundBurst(), i * 200);
+        }
+      }
+
+      function updateCountdown() {
+        const now = new Date();
+        let diff = targetDate - now;
+
+        if (diff <= 0) {
+          if (!alreadyCelebrated) {
+            alreadyCelebrated = true;
+            bigCelebration();
+          }
+          return;
+        }
+
+        const sec = Math.floor(diff / 1000);
+        const days  = Math.floor(sec / 86400);
+        const hours = Math.floor((sec % 86400) / 3600);
+        const mins  = Math.floor((sec % 3600) / 60);
+        const secs  = sec % 60;
+
+        cdDays.textContent  = String(days).padStart(2, "0");
+        cdHours.textContent = String(hours).padStart(2, "0");
+        cdMins.textContent  = String(mins).padStart(2, "0");
+        cdSecs.textContent  = String(secs).padStart(2, "0");
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
     });
   </script>
 </body>
