@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Taller Herrera - Fin de Año</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #050816 0%, #02010a 45%, #020005 100%);
+      color: #fefce8; /* blanco cálido */
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top, rgba(252,211,77,0.18), transparent 60%),
+        radial-gradient(circle at bottom, #1f0b17 0%, #02010a 55%, #000 100%);
+      background-size: 140% 140%;
+      animation: skyMove 25s ease-in-out infinite;
+    }
+
+    @keyframes skyMove {
+      0%   { background-position: 0% 0%; }
+      50%  { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    /* Estrellas suaves */
+    .stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: #fef3c7;
+      opacity: 0.7;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50%      { opacity: 1;    transform: scale(1.6); }
+    }
+
+    /* Panel central cálido */
+    .center-panel {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(900px, 90%);
+      padding: 2.4rem 2.6rem 2.7rem;
+      border-radius: 28px;
+      background: radial-gradient(circle at top,
+                 rgba(248,250,252,0.02),
+                 rgba(15,23,42,0.9));
+      border: 1px solid rgba(248, 250, 252, 0.08);
+      box-shadow:
+        0 24px 60px rgba(0,0,0,0.9),
+        0 0 0 1px rgba(251,191,36,0.35);
+      backdrop-filter: blur(12px);
+    }
+
+    .year-label {
+      text-align: center;
+      font-size: 3.1rem;
+      font-weight: 900;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #facc15; /* dorado */
+      text-shadow:
+        0 0 12px rgba(250,204,21,0.95),
+        0 0 26px rgba(248,250,252,0.9);
+      margin-bottom: 0.4rem;
+    }
+
+    .brand {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #fed7aa; /* marfil anaranjado */
+      margin-bottom: 0.7rem;
+    }
+
+    .headline {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fef9c3;
+      margin-bottom: 0.9rem;
+      border-right: 2px solid #facc15;
+      white-space: nowrap;
+      overflow: hidden;
+      min-height: 1.7em;
+    }
+
+    .body-text {
+      text-align: center;
+      font-size: 0.98rem;
+      color: #e5e7eb;
+      line-height: 1.7;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .footer-text {
+      margin-top: 1.8rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fbbf24;
+    }
+
+    .palette {
+      margin-top: 0.4rem;
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #fed7aa;
+    }
+
+    .icon-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .icon-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 30% 30%, #1b1119, #020617 80%);
+      border: 1px solid rgba(252,211,77,0.9);
+      box-shadow: 0 0 18px rgba(251,191,36,0.85);
+      font-size: 24px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .icon-badge:nth-child(2) { animation-delay: 0.7s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-6px); }
+    }
+
+    /* Árbol navideño cálido */
+    .tree {
+      position: absolute;
+      left: 5%;
+      bottom: 0;
+      width: 130px;
+      height: 210px;
+    }
+
+    .tree-layer {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border-style: solid;
+      border-color: transparent transparent #15803d transparent;
+      filter: drop-shadow(0 0 14px rgba(34,197,94,0.85));
+    }
+
+    .tree-layer.layer1 {
+      bottom: 55px;
+      border-width: 0 50px 75px 50px;
+    }
+    .tree-layer.layer2 {
+      bottom: 100px;
+      border-width: 0 40px 65px 40px;
+    }
+    .tree-layer.layer3 {
+      bottom: 140px;
+      border-width: 0 30px 55px 30px;
+    }
+
+    .tree-trunk {
+      position: absolute;
+      bottom: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 30px;
+      background: #7c2d12;
+      border-radius: 4px;
+    }
+
+    .tree-star {
+      position: absolute;
+      bottom: 192px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      color: #facc15;
+      text-shadow: 0 0 14px rgba(250,204,21,1);
+      animation: twinkle 1.5s ease-in-out infinite;
+    }
+
+    .tree-light {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #f97316;
+      box-shadow: 0 0 11px currentColor;
+      animation: lights 1.4s ease-in-out infinite;
+    }
+
+    @keyframes lights {
+      0%,100% { opacity: 0.2; transform: scale(0.7); }
+      50%     { opacity: 1;   transform: scale(1.15); }
+    }
+
+    .horizon {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 110px;
+      background: linear-gradient(to top, #020005 0%, transparent 100%);
+    }
+
+    /* MOTOR EN VIDEO – caja cálida */
+    .engine-real {
+      position: absolute;
+      right: 4%;
+      bottom: 18px;
+      width: 310px;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow:
+        0 18px 45px rgba(0,0,0,0.95),
+        0 0 0 1px rgba(248,113,113,0.45);
+      border: 1px solid rgba(248,250,252,0.12);
+      background: radial-gradient(circle at 50% 0%, #1c1917, #020617);
+    }
+
+    .engine-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.1) contrast(1.05);
+    }
+
+    .engine-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 60%,
+        rgba(248, 181, 61, 0.4),
+        transparent 72%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+      animation: enginePulse 1.3s ease-in-out infinite;
+    }
+
+    @keyframes enginePulse {
+      0%,100% { opacity: 0.18; }
+      50%     { opacity: 0.6; }
+    }
+
+    /* Fuegos artificiales cálidos */
+    .rocket {
+      position: fixed;
+      width: 3px;
+      height: 40px;
+      background: linear-gradient(to top, rgba(248,181,61,0), #fbbf24);
+      border-radius: 999px;
+      pointer-events: none;
+      animation: rocketUp 0.7s ease-out forwards;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes rocketUp {
+      0%   { transform: translateY(0); opacity: 0; }
+      10%  { opacity: 1; }
+      100% { transform: translateY(-260px); opacity: 0; }
+    }
+
+    .firework-center {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle,#fef3c7,#fbbf24,transparent 70%);
+      box-shadow: 0 0 25px #facc15;
+      pointer-events: none;
+      animation: center-fade 1.05s ease-out forwards;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes center-fade {
+      0%   { opacity: 0; transform: scale(0.4); }
+      20%  { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.2); }
+    }
+
+    .spark {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #fed7aa;
+      box-shadow: 0 0 14px currentColor;
+      pointer-events: none;
+      animation: spark-move 1.05s ease-out forwards;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes spark-move {
+      0%   { opacity: 1; transform: translate(0,0) scale(1); }
+      100% { opacity: 0; transform: translate(var(--dx),var(--dy)) scale(0.3); }
+    }
+
+    /* Confeti reducido, cálido */
+    .confetti {
+      position: fixed;
+      width: 4px;
+      height: 10px;
+      border-radius: 2px;
+      opacity: 0.9;
+      pointer-events: none;
+      animation: confetti-fall linear infinite;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes confetti-fall {
+      0%   { transform: translateY(-10vh) rotate(0deg); }
+      100% { transform: translateY(120vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="stars" id="stars"></div>
+
+    <!-- Árbol -->
+    <div class="tree" id="tree">
+      <div class="tree-star">★</div>
+      <div class="tree-layer layer3"></div>
+      <div class="tree-layer layer2"></div>
+      <div class="tree-layer layer1"></div>
+      <div class="tree-trunk"></div>
+    </div>
+
+    <div class="horizon"></div>
+
+    <!-- MOTOR EN VIDEO -->
+    <div class="engine-real">
+      <!-- Cambia "motor.mp4" por el nombre de tu video -->
+      <video class="engine-video" src="motor.mp4"
+             autoplay loop muted playsinline></video>
+      <div class="engine-glow"></div>
+    </div>
+
+    <!-- Panel principal -->
+    <div class="center-panel">
+      <div class="icon-row">
+        <div class="icon-badge">⚙️</div>
+        <div class="icon-badge">🥂</div>
+        <div class="icon-badge">🛠️</div>
+      </div>
+
+      <div class="year-label">2026</div>
+      <div class="brand">TALLER HERRERA</div>
+
+      <div class="headline" id="headline"
+           data-text="despide el año con luces en el cielo y motores listos para el siguiente.">
+      </div>
+
+      <p class="body-text">
+        Como las chispas que encienden la noche, cada proyecto que llegó al taller encendió nuestro año.
+        Gracias por confiar tus rutas y tus motores en nuestras manos.
+        Que este nuevo ciclo venga cargado de potencia, seguridad y muchos kilómetros sin fallas.
+      </p>
+
+      <div class="footer-text">FELIZ FIN DE AÑO Y ARRANQUE 2026</div>
+      <div class="palette">ROJO FESTIVO · DORADO BRINDIS · BRILLO DE TALLER</div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      /* Estrellas */
+      const starsContainer = document.getElementById("stars");
+      for (let i = 0; i < 60; i++) {
+        const s = document.createElement("div");
+        s.className = "star";
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.top = Math.random() * 55 + "vh";
+        s.style.animationDelay = (Math.random() * 3) + "s";
+        starsContainer.appendChild(s);
+      }
+
+      /* Luces del árbol: solo tonos cálidos */
+      const tree = document.getElementById("tree");
+      const lightColors = ["#f97316", "#facc15", "#fb7185"];
+      for (let i = 0; i < 12; i++) {
+        const l = document.createElement("div");
+        l.className = "tree-light";
+        l.style.background = lightColors[i % lightColors.length];
+        l.style.left = (30 + Math.random() * 70) + "px";
+        l.style.bottom = (58 + Math.random() * 100) + "px";
+        l.style.animationDelay = (Math.random() * 1.3) + "s";
+        tree.appendChild(l);
+      }
+
+      /* Texto que se escribe */
+      const headline = document.getElementById("headline");
+      const text = headline.dataset.text;
+      let idx = 0;
+      (function type() {
+        if (idx <= text.length) {
+          headline.textContent = text.substring(0, idx);
+          idx++;
+          setTimeout(type, 60);
+        } else {
+          headline.style.borderRight = "2px solid transparent";
+        }
+      })();
+
+      /* Fuegos artificiales cálidos */
+      function launchFirework() {
+        const x = 18 + Math.random() * 64;
+        const baseY = 88 + Math.random() * 6;
+
+        const rocket = document.createElement("div");
+        rocket.className = "rocket";
+        rocket.style.left = x + "vw";
+        rocket.style.bottom = baseY + "px";
+        document.body.appendChild(rocket);
+
+        const colors = ["#fbbf24", "#fb923c", "#fecaca", "#fef3c7"];
+
+        setTimeout(() => {
+          rocket.remove();
+
+          const cx = x;
+          const cy = 22 + Math.random() * 30;
+          const center = document.createElement("div");
+          center.className = "firework-center";
+          center.style.left = cx + "vw";
+          center.style.top = cy + "vh";
+          document.body.appendChild(center);
+
+          const sparks = 20;
+          for (let i = 0; i < sparks; i++) {
+            const angle = (Math.PI * 2 * i) / sparks + Math.random() * 0.3;
+            const dist = 65 + Math.random() * 35;
+            const dx = Math.cos(angle) * dist;
+            const dy = Math.sin(angle) * dist;
+
+            const sp = document.createElement("div");
+            sp.className = "spark";
+            sp.style.left = cx + "vw";
+            sp.style.top = cy + "vh";
+            sp.style.color = colors[Math.floor(Math.random() * colors.length)];
+            sp.style.setProperty("--dx", dx + "px");
+            sp.style.setProperty("--dy", dy + "px");
+            document.body.appendChild(sp);
+
+            setTimeout(() => sp.remove(), 1100);
+          }
+
+          setTimeout(() => center.remove(), 1100);
+        }, 650);
+      }
+
+      setInterval(launchFirework, 1000);
+      for (let i = 0; i < 3; i++) setTimeout(launchFirework, 300 * i);
+
+      /* Confeti cálido pero discreto */
+      function crearConfetti() {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        const colors = ["#fbbf24", "#fb923c", "#fecaca"];
+        c.style.background = colors[Math.floor(Math.random() * colors.length)];
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.animationDuration = (5 + Math.random() * 4) + "s";
+        c.style.animationDelay = Math.random() * 5 + "s";
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 10000);
+      }
+      for (let k = 0; k < 15; k++) crearConfetti();
+      setInterval(crearConfetti, 1500);
+    });
+  </script>
+</body>
+</html>
