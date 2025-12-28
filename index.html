@@ -15,12 +15,14 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    /* 👉 Sin scroll, siempre pantalla completa */
     body {
+      height: 100vh;
       min-height: 100vh;
-      overflow-y: auto;                 /* 👉 ahora se puede hacer scroll */
+      overflow: hidden;
       display: flex;
       justify-content: center;
-      align-items: stretch;
+      align-items: center;
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #02010a;
       color: #fefce8;
@@ -29,13 +31,13 @@
     .scene {
       position: relative;
       width: 100%;
-      min-height: 100vh;
+      height: 100vh;       /* ocupa toda la pantalla */
       overflow: hidden;
     }
 
     /* ===== VIDEO FONDO ===== */
     .video-bg {
-      position: fixed;                  /* fijo para que siempre llene el fondo */
+      position: fixed;
       inset: 0;
       z-index: 0;
       display: flex;
@@ -211,7 +213,7 @@
 
     .brand {
       font-family: "Poppins", system-ui, sans-serif;
-      font-size: clamp(1.1rem, 3vw, 1.7rem);   /* 👉 más grande */
+      font-size: clamp(1.1rem, 3vw, 1.7rem);
       font-weight: 900;
       letter-spacing: 0.45em;
       text-transform: uppercase;
@@ -233,7 +235,6 @@
         0 0 10px rgba(0,0,0,0.9),
         0 0 25px rgba(250,204,21,0.7);
     }
-
 
     .body-text {
       font-size: clamp(1rem, 2.3vw, 1.15rem);
