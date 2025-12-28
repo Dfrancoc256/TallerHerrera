@@ -2,6 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <!-- 👇 IMPORTANTE PARA MÓVIL -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Taller Herrera - Fin de Año</title>
 
   <!-- Fuentes -->
@@ -357,7 +360,7 @@
       100% { transform: translateY(120vh) translateX(15px) scale(0.4); opacity: 0; }
     }
 
-    /* ===== MÓVIL ===== */
+    /* ===== MÓVIL (ajustado para que se vea grande) ===== */
     @media (max-width: 768px) {
       .video-bg video {
         width: 100%;
@@ -366,8 +369,9 @@
       }
 
       .center-content {
-        top: 44%;
+        top: 50%;
         transform: translate(-50%, -50%);
+        width: 100vw;
         padding-inline: 1.2rem;
       }
 
@@ -378,12 +382,13 @@
       }
 
       .year-label {
-        font-size: clamp(2.8rem, 11vw, 3.5rem);
+        font-size: clamp(3.1rem, 14vw, 3.8rem);
       }
 
       .headline {
         border-right: none;
-        font-size: 1.05rem;
+        font-size: 1.15rem;
+        line-height: 1.4;
       }
 
       .body-text {
@@ -397,7 +402,7 @@
       }
 
       .count-item {
-        min-width: 56px;
+        min-width: 58px;
       }
     }
   </style>
